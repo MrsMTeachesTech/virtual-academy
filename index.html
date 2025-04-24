@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sora Hybrid Virtual Academy</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9fc;
+      color: #222;
+    }
+    .hero {
+      background: linear-gradient(135deg, #1a237e, #3949ab);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.25em;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .cta-buttons a {
+      text-decoration: none;
+      background: white;
+      color: #1a237e;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .cta-buttons a:hover {
+      background: #ddd;
+    }
+    .section {
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .questionnaire {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .questionnaire label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+    .questionnaire select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+    .questionnaire button {
+      background-color: #1a237e;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <h1>Where Passion Meets Purpose—Virtually</h1>
+    <p>Give your child the structure they need—and the freedom they crave. Our hybrid academy blends live instruction, social connection, and personalized learning.</p>
+    <div class="cta-buttons">
+      <a href="#quiz">Personalize Your Student’s Learning Journey</a>
+      <a href="#day">Explore a Day in the Life</a>
+    </div>
+  </section>
+
+  <section id="quiz" class="section">
+    <h2>Let's get the perfect fit for your Student</h2>
+    <div class="questionnaire">
+      <label>How much structure does your student thrive with?</label>
+      <select id="structure">
+        <option value="inperson">A consistent weekly schedule with clear routines</option>
+        <option value="hybrid">A mix of structured learning and flexible time</option>
+        <option value="homeschool">A schedule we can design around our family’s needs</option>
+      </select>
+
+      <label>How comfortable are you supporting your child’s learning at home?</label>
+      <select id="support">
+        <option value="inperson">I prefer certified teachers to guide everything</option>
+        <option value="hybrid">I can support learning part-time with teacher backup</option>
+        <option value="homeschool">I feel confident leading learning with curriculum support</option>
+      </select>
+
+      <label>How independent is your student with academic work?</label>
+      <select id="independence">
+        <option value="inperson">Needs regular check-ins and adult presence</option>
+        <option value="hybrid">Can work independently with occasional support</option>
+        <option value="homeschool">Learns best through self-direction and exploration</option>
+      </select>
+
+      <label>What kind of weekly schedule works best for your family?</label>
+      <select id="schedule">
+        <option value="inperson">On-campus several days per week</option>
+        <option value="hybrid">A few structured hours each week, mostly from home</option>
+        <option value="homeschool">Entirely home-based, flexible throughout the week</option>
+      </select>
+
+      <label>What kind of social interaction are you looking for?</label>
+      <select id="social">
+        <option value="inperson">Weekly on-campus classroom experiences</option>
+        <option value="hybrid">Weekly meetups or club-style interactions</option>
+        <option value="homeschool">Occasional social events or homeschool meetups</option>
+      </select>
+
+      <button onclick="calculateFit()">Personalize your Learning</button>
+      <div id="result" class="result"></div>
+    </div>
+  </section>
+
+  <script>
+    function calculateFit() {
+      const values = [
+        document.getElementById('structure').value,
+        document.getElementById('support').value,
+        document.getElementById('independence').value,
+        document.getElementById('schedule').value,
+        document.getElementById('social').value
+      ];
+
+      const counts = { inperson: 0, hybrid: 0, homeschool: 0 };
+      values.forEach(value => counts[value]++);
+
+      let max = 0;
+      let bestFit = '';
+      for (let option in counts) {
+        if (counts[option] > max) {
+          max = counts[option];
+          bestFit = option;
+        }
+      }
+
+      const result = document.getElementById('result');
+      if (bestFit === 'inperson') {
+        result.textContent = "🏫 We recommend our In-Person Program for a structured weekly schedule and on-campus learning.";
+      } else if (bestFit === 'hybrid') {
+        result.textContent = "🌐 Our Hybrid Virtual Academy sounds like a great fit for your family's need for flexibility and support.";
+      } else {
+        result.textContent = "🏡 Homeschool with Teacher Support may be the perfect fit for your personalized and home-led learning style.";
+      }
+    }
+  </script>
+</body>
+</html>
